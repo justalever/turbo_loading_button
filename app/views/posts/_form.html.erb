@@ -1,0 +1,30 @@
+<%= form_with(model: post, class: "group") do |form| %>
+  <%= render "shared/error_messages", resource: form.object %>
+
+  <div class="form-group">
+    <%= form.label :title, class: "form-label" %>
+    <%= form.text_field :title, class: "form-input" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :content, class: "form-label" %>
+    <%= form.text_area :content, class: "form-textarea", data: { controller: "auto-expand-text-area", action:"input->auto-expand-text-area#expand" } %>
+  </div>
+
+  <div class="flex items-center justify-between flex-wrap">
+    <div class="sm:flex-1 sm:mb-0 mb-6">
+      <%= button_tag class: "btn btn-primary group-aria-busy:bg-black" do %>
+        <span class="group-aria-busy:hidden block">Create post</span>
+        <div class="group-aria-busy:block hidden">
+          <%= icon "loader", path: "icons/loader.svg", classes: "size-6 fill-white" %>
+        </div>
+      <% end %>
+    </div>
+
+    <% if form.object.new_record? %>
+      <%= link_to "Cancel", posts_path, class: "btn btn-white" %>
+    <% else %>
+      <%= link_to "Cancel", post_path(@post), class: "btn btn-white" %>
+    <% end %>
+  </div>
+<% end %>

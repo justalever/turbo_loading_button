@@ -1,0 +1,20 @@
+<article id="<%= dom_id post %>" class="py-6 prose prose-zinc dark:prose-invert">
+    <p class="mb-0 font-heading font-medium">
+      Title
+    </p>
+    <p class="my-0">
+      <%= post.title %>
+    </p>
+    <p class="mb-0 font-heading font-medium">
+      Content
+    </p>
+    <p class="my-0">
+      <%= post.content %>
+    </p>
+
+   <p>
+    <%= link_to "View Post", post, class: "underline" %>
+  </p>
+
+  <time class="text-zinc-600 dark:text-zinc-400 text-xs" datetime="<%= post.created_at.to_formatted_s(:long) %>">Created <%= time_ago_in_words(post.created_at) + " ago" %></time>
+</article>
